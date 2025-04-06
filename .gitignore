@@ -49,3 +49,9 @@ qtcreator-*
 
 # Catkin custom files
 CATKIN_IGNORE
+rob599_basic/.vscode/c_cpp_properties.json
+rob599_basic/.vscode/settings.json
+rob599_basic/resource/rob599_basic
+rob599_basic/test/test_copyright.py
+rob599_basic/test/test_flake8.py
+rob599_basic/test/test_pep257.py
