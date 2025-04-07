@@ -24,9 +24,19 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+            # A Basic node that does nothing useful.
             'useless = rob599_basic.node:main',
+
+            # A basic publisher and subscriber.
             'publisher = rob599_basic.publisher:main',
             'subscriber = rob599_basic.subscriber:main',
+
+            # Node that republishes doubled values.
+            'twice = rob599_basic.twice:main',
+
+            # Two nodes that use different entry points in the same Python file.
+            'doubler = rob599_basic.value_manipulator:doubler',
+            'noiser = rob599_basic.value_manipulator:noiser',
         ],
     },
 )
