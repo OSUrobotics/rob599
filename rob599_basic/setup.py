@@ -1,4 +1,5 @@
 from setuptools import find_packages, setup
+import rclpy
 
 package_name = 'rob599_basic'
 
