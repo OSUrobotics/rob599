@@ -14,6 +14,7 @@ setup(
         ('share/' + package_name, ['package.xml']),
     ],
     install_requires=['setuptools'],
+    extras_require={"test": ["pytest"]},
     zip_safe=True,
 
     maintainer='Bill Smart',
@@ -21,7 +22,7 @@ setup(
     description='ROS 2 examples for ROB 499/599: Robot Software Frameworks',
     license='BSD-3-Clause',
 
-    tests_require=['pytest'],
+    
     entry_points={
         'console_scripts': [
             # A Basic node that does nothing useful.
