@@ -37,6 +37,14 @@ setup(
             # Two nodes that use different entry points in the same Python file.
             'doubler = rob599_basic.value_manipulator:doubler',
             'noiser = rob599_basic.value_manipulator:noiser',
+
+            # Custom message example.
+            'custom_publisher = rob599_basic.messages:object_publisher',
+            'custom_subscriber = rob599_basic.messages:object_subscriber',
+
+            # Two nodes to demonstrate the basic service call mechanism.
+            'service_client = rob599_basic.service_client:main',
+            'service_server = rob599_basic.service_server:main',
         ],
     },
 )

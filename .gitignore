@@ -55,3 +55,6 @@ rob599_basic/resource/rob599_basic
 rob599_basic/test/test_copyright.py
 rob599_basic/test/test_flake8.py
 rob599_basic/test/test_pep257.py
+rob599_msgs/test/test_copyright.py
+rob599_msgs/test/test_flake8.py
+rob599_msgs/test/test_pep257.py

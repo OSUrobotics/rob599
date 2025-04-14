@@ -1,0 +1,9 @@
+# goal
+int64 number
+---
+# result
+int64[] sequence
+---
+# feedback
+int64 progress
+
