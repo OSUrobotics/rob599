@@ -45,6 +45,9 @@ class Twice(Node):
 		# Multiply the data element of the message.
 		new_msg.data = msg.data * 2
 
+		# Make sure we record what's going on
+		self.get_logger().info(f'Got {msg.data} and transformed it to {new_msg.data}')
+
 		# Republish the message.  Reusing the original message is slightly more efficient
 		# than creating a new one.
 		self.pub.publish(new_msg)

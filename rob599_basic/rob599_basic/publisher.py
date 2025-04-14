@@ -53,7 +53,7 @@ class BasicPublisher(Node):
 		# Log that we published something.  In ROS2, loggers are associated with nodes, and
 		# the idiom is to use the get_logger() call to get the logger.  This has functions
 		# for each of the logging levels.
-		self.get_logger().info('Published {0}'.format(self.counter))
+		self.get_logger().info(f'Published {self.counter}')
 		self.counter += 1
 
 

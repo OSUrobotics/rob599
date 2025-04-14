@@ -75,10 +75,10 @@ def main(args=None):
 					answer = client.response.result()
 				except Exception as e:
 					# An exception will be thrown if things fail.
-					client.get_logger().info('Service call failed: {0}'.format(e))
+					client.get_logger().info(f'Service call failed: {e}')
 				else:
 					# Then, we're going to log the result.
-					client.get_logger().info('Send {0}, got {1}'.format(i, answer.doubled))
+					client.get_logger().info(f'Sent {i}, got {answer.doubled}')
 					break;
 
 	# Shut things down when we're done.

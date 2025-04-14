@@ -39,7 +39,7 @@ class BasicService(Node):
 		response.doubled = request.number * 2
 
 		# Log a message.
-		self.get_logger().info('Got {0}'.format(request.number))
+		self.get_logger().info(f'Got {request.number}')
 
 		# The idiom is to return the response at the end of the callback.
 		return response
