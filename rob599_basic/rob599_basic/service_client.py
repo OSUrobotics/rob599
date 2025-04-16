@@ -18,10 +18,7 @@ from rclpy.node import Node
 from rob599_msgs.srv import Doubler
 
 
-# The idiom in ROS2 is to use a function to do all of the setup and work.  This
-# function is referenced in the setup.py file as the entry point of the node when
-# we're running the node with ros2 run.  The function should have one argument, for
-# passing command line arguments, and it should default to None.
+# The idiom is still to inherit from Node.  This one shows a basic service client.
 class BasicServiceClient(Node):
 	def __init__(self):
 		# Initialize the superclass.
@@ -30,7 +27,8 @@ class BasicServiceClient(Node):
 		# Set up a service client with a type and a service name.
 		self.client = self.create_client(Doubler, 'doubler')
 
-		# Wait until we have a connection to the server.
+		# Wait until we have a connection to the server.  Timeout and print a message
+		# every second until we have a connection.
 		while not self.client.wait_for_service(timeout_sec=1):
 			self.get_logger().info('waiting for service to start')
 
@@ -48,7 +46,7 @@ class BasicServiceClient(Node):
 		self.response = self.client.call_async(request)
 
 
-# This is the entry point of the node.
+# This is the entry point of the node for a set of single calls.
 def main(args=None):	
 	# Initialize rclpy.
 	rclpy.init(args=args)
@@ -79,7 +77,7 @@ def main(args=None):
 				else:
 					# Then, we're going to log the result.
 					client.get_logger().info(f'Sent {i}, got {answer.doubled}')
-					break;
+					break
 
 	# Shut things down when we're done.
 	rclpy.shutdown()

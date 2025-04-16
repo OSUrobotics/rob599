@@ -41,10 +41,17 @@ setup(
             # Custom message example.
             'custom_publisher = rob599_basic.messages:object_publisher',
             'custom_subscriber = rob599_basic.messages:object_subscriber',
-
+ 
             # Two nodes to demonstrate the basic service call mechanism.
             'service_client = rob599_basic.service_client:main',
             'service_server = rob599_basic.service_server:main',
-        ],
+
+            # Two nodes to demonstrate the basic action call mechanism.
+            'action_client = rob599_basic.action_client:main',
+            'action_server = rob599_basic.action_server:main',
+
+            # Parameter example.
+            'param_demo = rob599_basic.params:main',
+       ],
     },
 )
