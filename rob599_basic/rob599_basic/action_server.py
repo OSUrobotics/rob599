@@ -97,6 +97,8 @@ def main(args=None):
 	# Give control over to ROS2
 	rclpy.spin(server)
 
+	rclpy.shutdown()
+
 
 # This is the entry point for running the node directly from the command line.
 if __name__ == '__main__':

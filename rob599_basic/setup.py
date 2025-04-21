@@ -1,5 +1,9 @@
 from setuptools import find_packages, setup
 
+# We're going to use these to install the launch files.
+import os
+from glob import glob
+
 package_name = 'rob599_basic'
 
 setup(
@@ -12,6 +16,12 @@ setup(
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
+
+        # This line makes sure the launch files are installer.  This will copy
+        # all the files in the launch directory to the install location.
+        (os.path.join('share', package_name, 'launch'), glob(os.path.join('launch', '*.py'))),
+        (os.path.join('share', package_name, 'launch'), glob(os.path.join('launch', '*.xml'))),
+        (os.path.join('share', package_name, 'launch'), glob(os.path.join('launch', '*.yaml'))),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
@@ -52,6 +62,9 @@ setup(
 
             # Parameter example.
             'param_demo = rob599_basic.params:main',
+
+            # Bag API example
+            'bag_writer = rob599_basic.bag_writer:main',
        ],
     },
 )

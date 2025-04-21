@@ -30,7 +30,7 @@ class FibonacciClient(Node):
 		# Initialize the superclass
 		super().__init__('fib_client')
 
-		# Set up the simple action server.  This is a different procedure from topics and
+		# Set up the simple action client.  This is a different procedure from topics and
 		# services, since actions are not part of the Node class.  However, we're still
 		# going to pass in a node (as self), a type and an action name.
 		self.client = ActionClient(self, Fibonacci, 'fibonacci')

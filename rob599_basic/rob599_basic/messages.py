@@ -3,7 +3,7 @@
 
 # Example of publishing in ROS 2
 #
-# publisher.py
+# messages.py
 #
 # Bill Smart
 #
