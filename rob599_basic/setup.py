@@ -57,7 +57,8 @@ setup(
             'service_server = rob599_basic.service_server:main',
 
             # Two nodes to demonstrate the basic action call mechanism.
-            'action_client = rob599_basic.action_client:main',
+            'action_client = rob599_basic.action_client:without_cancel',
+            'action_client_with_cancel = rob599_basic.action_client:with_cancel',
             'action_server = rob599_basic.action_server:main',
 
             # Parameter example.

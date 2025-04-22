@@ -12,7 +12,11 @@
 # Pull in the stuff we need from rclpy.
 import rclpy
 from rclpy.node import Node
-from rclpy.action import ActionServer
+from rclpy.action import ActionServer, CancelResponse
+
+# These are needed if we're going to enable action cancelation.
+from rclpy.callback_groups import ReentrantCallbackGroup
+from rclpy.executors import MultiThreadedExecutor
 
 # Pull in the action definition.  As with other compound messages, we only need to bring
 # in the base type, since all of the other types are defined inside of it.
@@ -56,7 +60,11 @@ class FibonacciActionServer(Node):
 		# and services, since actions are still not really first-class citizens.  However,
 		# we're still going to pass in the node (as self), in addition to a type, an
 		# action name, and a callback.
-		self.server = ActionServer(self, Fibonacci, 'fibonacci', self.callback)
+		# If we're going to enable action cancellation, we need the callback_group and
+		# cancel_callback arguments.  If we don't want to cancel actions, then we can
+		# omit these.
+		self.server = ActionServer(self, Fibonacci, 'fibonacci', self.callback, 
+			callback_group=ReentrantCallbackGroup(), cancel_callback=self.cancel_callback)
 
 	# This is the callback the services the action request.
 	def callback(self, goal):
@@ -72,6 +80,13 @@ class FibonacciActionServer(Node):
 		# Incrementally fill in the elements of the list by making calls to the naive
 		# Fibonacci number generator.
 		for i in range(goal.request.number + 1):
+			# Check to see if we have a cancellation request.  If we do, set the goal
+			# status to canceled and return an empty result.
+			if goal.is_cancel_requested:
+				goal.canceled()
+				self.get_logger().info('And, the goal is canceled.')
+				return Fibonacci.Result()
+
 			result.sequence.append(fibonacci(i))
 			goal.publish_feedback(Fibonacci.Feedback(progress=i))
 
@@ -85,6 +100,11 @@ class FibonacciActionServer(Node):
 		# Return the result to the action server.
 		return result
 
+	# This callback fires when a cancellation request comes in.
+	def cancel_callback(self, goal_handle):
+		self.get_logger().info('Canceling goal')
+		return CancelResponse.ACCEPT
+
 
 # This is the entry point.
 def main(args=None):
@@ -94,9 +114,12 @@ def main(args=None):
 	# Set up a node to do the work.
 	server = FibonacciActionServer()
 
-	# Give control over to ROS2
-	rclpy.spin(server)
+	# Give control over to ROS2.  To make the goal cancelation work, we need a
+	# multithreaded executor here.  If we don't need goal cancelation, we can
+	# use the default executor.
+	rclpy.spin(server, MultiThreadedExecutor())
 
+	# Make sure we shut down politely.
 	rclpy.shutdown()
 
 
