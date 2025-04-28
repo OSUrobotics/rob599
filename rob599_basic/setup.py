@@ -66,6 +66,9 @@ setup(
 
             # Bag API example
             'bag_writer = rob599_basic.bag_writer:main',
+
+            # Marker example
+            'marker = rob599_basic.marker:main',
        ],
     },
 )
