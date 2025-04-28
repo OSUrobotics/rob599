@@ -61,5 +61,6 @@ def generate_launch_description():
 		)
 	)
 
+	# Finally, create a LaunchDescription from our list of nodes, and return it.
 	return launch.LaunchDescription(cascade)
 
