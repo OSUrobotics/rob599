@@ -28,7 +28,12 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+            # Example use of ROS Image messages.
             'image_modifier = rob599_more.image_modifier:main',
+
+            # PointCloud2 examples.
+            'point_cloud_generator = rob599_more.point_cloud:generate',
+            'point_cloud_reader = rob599_more.point_cloud:read',
         ],
     },
 )
