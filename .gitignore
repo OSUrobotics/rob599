@@ -65,3 +65,4 @@ rob599_basic/rob599_more/test/test_flake8.py
 rob599_more/test/test_copyright.py
 rob599_more/test/test_flake8.py
 .gitignore
+rob599_more/test/test_pep257.py
