@@ -1,0 +1,31 @@
+<!--
+	This launches a couple of image_view nodes, one to show the original image and 
+	another to show the modified image.  It assumes that we're on a Quori robot, or
+	playing a bag file collected there, for the input image topic names.
+
+	image_example_launch.xml
+
+	Bill Smart
+-->
+
+<launch>
+
+	<!-- Set the expected input image topic. -->
+	<let name="input_image" value="/astra_ros/devices/default/color/image_color" />
+
+	<!-- Launch the viewer for the original image stream. -->
+	<node pkg="image_view" exec="image_view" name="original_image" >
+		<remap from="image" to="$(var input_image)" />
+	</node>
+
+	<!-- Launch the viewer for the modified image stream. -->
+	<node pkg="image_view" exec="image_view" name="modified_image" >
+		<remap from="image" to="/image_modified" />
+	</node>
+
+	<!-- Launch the modifier node. -->
+	<node pkg="rob599_more" exec="image_modifier" name="image_modifier" >
+		<remap from="image" to="$(var input_image)" />
+	</node>
+
+</launch>
