@@ -74,7 +74,6 @@ class MarkerPublisher(Node):
 		marker.color.g = 1.0
 		marker.color.b = 0.0
 		marker.color.a = 1.0
-
 		# And publish it.
 		self.pub.publish(marker)
 
