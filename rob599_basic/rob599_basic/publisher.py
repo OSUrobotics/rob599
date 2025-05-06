@@ -36,13 +36,13 @@ class BasicPublisher(Node):
 		# Rather than setting up a Rate-controller loop, the idiom in ROS2 is to use timers.
 		# Timers are available in the Node interface, and take a period (in seconds), and a
 		# callback.  Timers are repeating by default.
-		self.timer = self.create_timer(1, self.callback)
+		self.timer = self.create_timer(1, self.timer_callback)
 
 		# Set up a counter that we can increment.
 		self.counter = 0
 
 	# This callback will be called every time the timer fires.
-	def callback(self):
+	def timer_callback(self):
 		# Make an Int64 message, and fill in the information.
 		msg = Int64()
 		msg.data = self.counter
