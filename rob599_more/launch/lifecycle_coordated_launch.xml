@@ -1,0 +1,22 @@
+<!--
+	Launch two counter lifecycle nodes.  This will let us demonstrate a
+	lifecycle node coordinator.
+
+	image_example_launch.xml
+
+	Bill Smart
+-->
+
+<launch>
+
+	<!-- Launch the first node. -->
+	<node pkg="rob599_more" exec="lifecycle" name="counter_1" >
+		<remap from="counter" to="counter_one" />
+	</node>
+
+	<!-- Launch the second node. -->
+	<node pkg="rob599_more" exec="lifecycle" name="counter_2" >
+		<remap from="counter" to="counter_two" />
+	</node>
+
+</launch>

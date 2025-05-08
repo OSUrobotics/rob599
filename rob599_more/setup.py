@@ -35,9 +35,10 @@ setup(
             'point_cloud_generator = rob599_more.point_cloud:generate',
             'point_cloud_reader = rob599_more.point_cloud:read',
 
-            # Lifecycle node example.
+            # Lifecycle node examples.
             'lifecycle = rob599_more.lifecycle:main',
             'lifecycle_manager = rob599_more.lifecycle_manager:main',
+            'coordinator = rob599_more.coordinator:main',
         ],
     },
 )
