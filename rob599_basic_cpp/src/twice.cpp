@@ -1,4 +1,4 @@
-// doubler.cpp
+// twice.cpp
 //
 // Bill Smart
 //
