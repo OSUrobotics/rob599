@@ -37,6 +37,7 @@ setup(
 
             # Lifecycle node example.
             'lifecycle = rob599_more.lifecycle:main',
+            'lifecycle_manager = rob599_more.lifecycle_manager:main',
         ],
     },
 )
