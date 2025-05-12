@@ -31,6 +31,9 @@ ament_target_dependencies(node rclcpp)
 add_executable(publisher src/publisher.cpp)
 ament_target_dependencies(publisher rclcpp std_msgs)
 
+add_executable(publisher2 src/publisher2.cpp)
+ament_target_dependencies(publisher2 rclcpp std_msgs)
+
 add_executable(subscriber src/subscriber.cpp)
 ament_target_dependencies(subscriber rclcpp std_msgs)
 
@@ -43,21 +46,26 @@ ament_target_dependencies(service_server rclcpp rob599_msgs)
 add_executable(service_client src/service_client.cpp)
 ament_target_dependencies(service_client rclcpp rob599_msgs)
 
-#add_executable(action_server src/action_server.cpp)
-#ament_target_dependencies(action_server rclcpp rclcpp_action rob599_msgs)
+add_executable(action_server src/action_server.cpp)
+ament_target_dependencies(action_server rclcpp rclcpp_action rob599_msgs)
+
+add_executable(action_client src/action_client.cpp)
+ament_target_dependencies(action_client rclcpp rclcpp_action rob599_msgs)
 
 
 # Make sure we install the nodes so that ros2 run can find them.
 install(TARGETS
   node
   publisher
+  publisher2
   subscriber
   twice
 
   service_server
   service_client
 
-#  action_server
+  action_server
+  action_client
 
   DESTINATION lib/${PROJECT_NAME}
 )
