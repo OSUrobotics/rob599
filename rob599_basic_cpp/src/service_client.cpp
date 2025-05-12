@@ -13,9 +13,12 @@ using namespace std::chrono_literals;
 // Define the node.
 class BasicServiceClient : public rclcpp::Node {
 public:
+	// Use an alias to simplify the syntax.
+	using Doubler = rob599_msgs::srv::Doubler;
+
 	BasicServiceClient() :Node("client") {
 		// Create a service client.
-		client_ = this->create_client<rob599_msgs::srv::Doubler>("doubler");
+		client_ = this->create_client<Doubler>("doubler");
 
 		// Wait until the service server is ready.  Timeout every 1s and print out an
 		// and appropriate message.  The 1s argument is a chrono literal.
@@ -35,7 +38,7 @@ public:
 	// up the creation and population of the Request message type.
 	auto send_request(const int number) {
 		// Make the request and fill in the fields.
-		auto request = std::make_shared<rob599_msgs::srv::Doubler::Request>();
+		auto request = std::make_shared<Doubler::Request>();
 		request->number = number;
 
 		// Make the async call and return the future.
@@ -44,7 +47,7 @@ public:
 
 private:
 	// A variable to hold the pointer to the service client.
-	rclcpp::Client<rob599_msgs::srv::Doubler>::SharedPtr client_;
+	rclcpp::Client<Doubler>::SharedPtr client_;
 };
 
 
