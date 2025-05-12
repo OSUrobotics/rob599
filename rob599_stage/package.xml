@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>rob599_stage</name>
+  <version>0.1.0</version>
+  <description>Stage simulator files for ROB 599</description>
+  <maintainer email="bill.smart@oregonstate.edu">wds</maintainer>
+  <license>BSD-3-Clause</license>
+
+  <test_depend>ament_copyright</test_depend>
+  <test_depend>ament_flake8</test_depend>
+  <test_depend>ament_pep257</test_depend>
+  <test_depend>python3-pytest</test_depend>
+
+  <depend>Stage</depend>
+  <depend>stage_ros2</depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>
