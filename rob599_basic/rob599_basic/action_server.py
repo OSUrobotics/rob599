@@ -79,7 +79,7 @@ class FibonacciActionServer(Node):
 
 		# Incrementally fill in the elements of the list by making calls to the naive
 		# Fibonacci number generator.
-		for i in range(goal.request.number + 1):
+		for i in range(1, goal.request.number + 1):
 			# Check to see if we have a cancellation request.  If we do, set the goal
 			# status to canceled and return an empty result.
 			if goal.is_cancel_requested:
