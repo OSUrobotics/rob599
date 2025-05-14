@@ -45,6 +45,11 @@ setup(
             'filter_publisher = rob599_more.filter_publisher:main',
             'approx_time = rob599_more.filters:approx_time',
 
+            # Latching topics.
+            'latching_publisher = rob599_more.latching:latching_publisher',
+            'subscriber = rob599_more.latching:subscriber',
+            'latching_subscriber = rob599_more.latching:latching_subscriber',
+
             # Multiple nodes per excutable.
             'combined_pub_sub = rob599_more.combined_pub_sub:main',
         ],
