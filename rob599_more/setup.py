@@ -34,11 +34,19 @@ setup(
             # PointCloud2 examples.
             'point_cloud_generator = rob599_more.point_cloud:generate',
             'point_cloud_reader = rob599_more.point_cloud:read',
+            'cloud_generator = rob599_more.cloud_generator:main',            
 
             # Lifecycle node examples.
             'lifecycle = rob599_more.lifecycle:main',
             'lifecycle_manager = rob599_more.lifecycle_manager:main',
             'coordinator = rob599_more.coordinator:main',
+
+            # Message filters.
+            'filter_publisher = rob599_more.filter_publisher:main',
+            'approx_time = rob599_more.filters:approx_time',
+
+            # Multiple nodes per excutable.
+            'combined_pub_sub = rob599_more.combined_pub_sub:main',
         ],
     },
 )
