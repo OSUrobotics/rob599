@@ -25,8 +25,7 @@ using namespace std::chrono_literals;
 class BasicPublisher : public rclcpp::Node {
 public:
 	// Constructor.  Initialize the base class and a count variable on the initializer list.
-	BasicPublisher() :Node("publisher"), count_(
-		) {
+	BasicPublisher() :Node("publisher"), count_(0) {
 		// Create a publisher, with a topic name and publisher queue size.  The function is
 		// templated and the type goes in the template.
 		publisher_ = this->create_publisher<std_msgs::msg::Int64>("counter", 10);
