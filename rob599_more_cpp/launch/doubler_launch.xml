@@ -1,0 +1,14 @@
+<launch>
+
+	<!-- The publisher node.  Remap the output to a topic called number. -->
+	<node pkg="rob599_basic_cpp" exec="publisher" name="generator" >
+		<remap from="counter" to="number" />
+	</node>
+
+	<node pkg="rob599_basic_cpp" exec="twice" name="doubler" />
+
+	<node pkg="rob599_basic_cpp" exec="subscriber" name="consumer" >
+		<remap from="counter" to="doubled" />
+	</node>
+
+</launch>
