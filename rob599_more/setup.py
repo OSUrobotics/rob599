@@ -35,6 +35,7 @@ setup(
             'point_cloud_generator = rob599_more.point_cloud:generate',
             'point_cloud_reader = rob599_more.point_cloud:read',
             'cloud_generator = rob599_more.cloud_generator:main',            
+            'geometric_cloud = rob599_more.geometric_cloud:main',
 
             # Lifecycle node examples.
             'lifecycle = rob599_more.lifecycle:main',

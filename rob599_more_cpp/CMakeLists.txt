@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.8)
 project(rob599_more_cpp)
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
-  add_compile_options(-Wall -Wextra -Wpedantic)
+  add_compile_options(-Wall -Wextra -Wpedantic -Wno-dev)
 endif()
 
 # If we're going to turn on the optimizer, we can add the -O3
@@ -20,6 +20,8 @@ find_package(ament_cmake REQUIRED)
 # C++ packages need rclcpp.  Add in the other packages we need here, too.
 find_package(rclcpp REQUIRED)
 find_package(sensor_msgs REQUIRED)
+find_package(pcl_ros REQUIRED)
+find_package(pcl_conversions REQUIRED)
 
 # Add in the executables.
 add_executable(cloud_generator src/cloud_generator_node.cpp src/cloud_generator.cpp)
@@ -35,11 +37,20 @@ add_executable(cloud_combined
 )
 ament_target_dependencies(cloud_combined rclcpp sensor_msgs)
 
+include_directories(${PCL_INCLUDE_DIRS})
+link_directories(${PCL_LIBRARY_DIRS})
+add_definitions(${PCL_DEFINITIONS})
+
+add_executable(cylinders src/cylinders.cpp)
+target_link_libraries(cylinders pcl_segmentation ${PCL_LIBRARIES})
+ament_target_dependencies(cylinders rclcpp sensor_msgs pcl_ros pcl_conversions)
+
 # Make sure we install the nodes so that ros2 run can find them.
 install(TARGETS
   cloud_generator
   cloud_timer
   cloud_combined
+  cylinders
 
   DESTINATION lib/${PROJECT_NAME}
 )
