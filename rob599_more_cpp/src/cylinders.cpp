@@ -48,12 +48,9 @@ private:
 	void callback(const PointCloud2::SharedPtr msg) {
 		RCLCPP_INFO(this->get_logger(), "Got a point cloud!!!");
 
-		// Translate the ROS PointCloud2 to a PCL PointCloud2.  Then translate this
-		// to a PCL PointCloud, with point type of XYZ.  Yes, this is annoying.
-		pcl::PCLPointCloud2 pcl_cloud_2;
-		pcl_conversions::toPCL(*msg, pcl_cloud_2);
+		// Translate the ROS PointCloud2 to a PCL PointCloud.
 		pcl::PointCloud<pcl::PointXYZ>::Ptr pcl_cloud(new pcl::PointCloud<pcl::PointXYZ>);
-		pcl::fromPCLPointCloud2(pcl_cloud_2,*pcl_cloud);
+		pcl::fromROSMsg(*msg, *pcl_cloud);
 
 		// Make another PCL PointCloud for the result.
 		pcl::PointCloud<pcl::PointXYZ>::Ptr pcl_cloud_filtered(new pcl::PointCloud<pcl::PointXYZ>);
@@ -105,12 +102,9 @@ private:
 		extract.setNegative(false);
 		extract.filter(*pcl_cloud_filtered);
 
-		// Copy the PCL PointCloud back into the PCL PointCloud2
-		pcl::toPCLPointCloud2(*pcl_cloud_filtered, pcl_cloud_2);
-
-		// Convert PCL PointCloud2 to a ROS PointCloud2.
+		// Convert PCL PointCloud to a ROS PointCloud2.
 		PointCloud2 ros_cloud;
-		pcl_conversions::fromPCL(pcl_cloud_2, ros_cloud);
+		pcl::toROSMsg(*pcl_cloud_filtered, ros_cloud);
 
 		// Set the header information.
 		ros_cloud.header = msg->header;
