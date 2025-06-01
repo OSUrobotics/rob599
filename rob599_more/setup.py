@@ -53,6 +53,9 @@ setup(
 
             # Multiple nodes per excutable.
             'combined_pub_sub = rob599_more.combined_pub_sub:main',
+
+            # Get the number of subscibers to a topic.
+            'pubcount = rob599_more.pubcount:main',
         ],
     },
 )
