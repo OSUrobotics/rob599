@@ -22,6 +22,7 @@ find_package(rclcpp REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(pcl_ros REQUIRED)
 find_package(pcl_conversions REQUIRED)
+find_package(rclcpp_components REQUIRED)
 
 # We need this to make the PCL stuff work.
 include_directories(${PCL_INCLUDE_DIRS})
@@ -46,12 +47,17 @@ add_executable(cylinders src/cylinders.cpp)
 target_link_libraries(cylinders ${PCL_LIBRARIES})
 ament_target_dependencies(cylinders rclcpp sensor_msgs pcl_ros pcl_conversions)
 
+add_executable(composable src/composable.cpp)
+ament_target_dependencies(composable rclcpp std_msgs)
+
+
 # Make sure we install the nodes so that ros2 run can find them.
 install(TARGETS
   cloud_generator
   cloud_timer
   cloud_combined
   cylinders
+  composable
 
   DESTINATION lib/${PROJECT_NAME}
 )

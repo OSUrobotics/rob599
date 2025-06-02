@@ -20,7 +20,6 @@
   <depend>pcl_1.12</depend>
 
 
-
   <export>
     <build_type>ament_cmake</build_type>
   </export>
